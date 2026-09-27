@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: movie-ticket-booking
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/movie_booking}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+  flyway:
+    enabled: true
+server:
+  port: ${SERVER_PORT:8080}
+
+booking:
+  hold-duration-minutes: ${HOLD_DURATION_MINUTES:10}
+  scheduler-delay-ms: ${HOLD_SCHEDULER_DELAY_MS:30000}
