@@ -1,0 +1,24 @@
+{
+  "info": {
+    "name": "Movie Ticket Booking System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {"key":"baseUrl","value":"http://localhost:8080"},
+    {"key":"showId","value":"REPLACE"},
+    {"key":"showSeatId","value":"REPLACE"},
+    {"key":"bookingId","value":"REPLACE"}
+  ],
+  "item": [
+    {"name":"Register Customer","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\"name\":\"Alice\",\"email\":\"alice@example.com\",\"password\":\"Password@123\"}"},"url":{"raw":"{{baseUrl}}/api/v1/auth/register","host":["{{baseUrl}}"],"path":["api","v1","auth","register"]}}},
+    {"name":"Admin - List Cities","request":{"method":"GET","auth":{"type":"basic","basic":[{"key":"username","value":"admin@example.com"},{"key":"password","value":"Admin@12345"}]},"url":{"raw":"{{baseUrl}}/api/v1/admin/cities","host":["{{baseUrl}}"],"path":["api","v1","admin","cities"]}}},
+    {"name":"Admin - Create City","request":{"method":"POST","auth":{"type":"basic","basic":[{"key":"username","value":"admin@example.com"},{"key":"password","value":"Admin@12345"}]},"header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\"name\":\"Mumbai\"}"},"url":{"raw":"{{baseUrl}}/api/v1/admin/cities","host":["{{baseUrl}}"],"path":["api","v1","admin","cities"]}}},
+    {"name":"Customer - Movies","request":{"method":"GET","auth":{"type":"basic","basic":[{"key":"username","value":"customer@example.com"},{"key":"password","value":"Customer@12345"}]},"url":{"raw":"{{baseUrl}}/api/v1/movies","host":["{{baseUrl}}"],"path":["api","v1","movies"]}}},
+    {"name":"Customer - Shows","request":{"method":"GET","auth":{"type":"basic","basic":[{"key":"username","value":"customer@example.com"},{"key":"password","value":"Customer@12345"}]},"url":{"raw":"{{baseUrl}}/api/v1/shows","host":["{{baseUrl}}"],"path":["api","v1","shows"]}}},
+    {"name":"Customer - Seat Map","request":{"method":"GET","auth":{"type":"basic","basic":[{"key":"username","value":"customer@example.com"},{"key":"password","value":"Customer@12345"}]},"url":{"raw":"{{baseUrl}}/api/v1/shows/{{showId}}/seats","host":["{{baseUrl}}"],"path":["api","v1","shows", "{{showId}}", "seats"]}}},
+    {"name":"Customer - Hold Seats","request":{"method":"POST","auth":{"type":"basic","basic":[{"key":"username","value":"customer@example.com"},{"key":"password","value":"Customer@12345"}]},"header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\"showSeatIds\":[\"{{showSeatId}}\"],\"discountCode\":\"WELCOME10\"}"},"url":{"raw":"{{baseUrl}}/api/v1/shows/{{showId}}/holds","host":["{{baseUrl}}"],"path":["api","v1","shows","{{showId}}","holds"]}}},
+    {"name":"Customer - Payment Success (Mock)","request":{"method":"POST","auth":{"type":"basic","basic":[{"key":"username","value":"customer@example.com"},{"key":"password","value":"Customer@12345"}]},"url":{"raw":"{{baseUrl}}/api/v1/bookings/{{bookingId}}/payment/success","host":["{{baseUrl}}"],"path":["api","v1","bookings","{{bookingId}}","payment","success"]}}},
+    {"name":"Customer - Booking History","request":{"method":"GET","auth":{"type":"basic","basic":[{"key":"username","value":"customer@example.com"},{"key":"password","value":"Customer@12345"}]},"url":{"raw":"{{baseUrl}}/api/v1/bookings","host":["{{baseUrl}}"],"path":["api","v1","bookings"]}}},
+    {"name":"Customer - Cancel","request":{"method":"POST","auth":{"type":"basic","basic":[{"key":"username","value":"customer@example.com"},{"key":"password","value":"Customer@12345"}]},"url":{"raw":"{{baseUrl}}/api/v1/bookings/{{bookingId}}/cancel","host":["{{baseUrl}}"],"path":["api","v1","bookings","{{bookingId}}","cancel"]}}}
+  ]
+}
